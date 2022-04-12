@@ -1,0 +1,964 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+- phpMyAdmin XML Dump
+- version 4.1.14
+- http://www.phpmyadmin.net
+-
+- Host: 127.0.0.1
+- Generation Time: Apr 12, 2022 at 08:04 PM
+- Server version: 5.6.17
+- PHP Version: 5.5.12
+-->
+
+<pma_xml_export version="1.0" xmlns:pma="http://www.phpmyadmin.net/some_doc_url/">
+    <!--
+    - Structure schemas
+    -->
+    <pma:structure_schemas>
+        <pma:database name="manjaree_mart" collation="latin1_swedish_ci" charset="latin1">
+            <pma:table name="cart_info">
+                CREATE TABLE `cart_info` (
+                  `cart_id` int(11) NOT NULL AUTO_INCREMENT,
+                  `item_id` int(11) NOT NULL,
+                  `item_rate` float NOT NULL,
+                  `item_qty` int(11) NOT NULL,
+                  `cust_name` varchar(30) NOT NULL,
+                  `reg_date` date NOT NULL,
+                  PRIMARY KEY (`cart_id`)
+                ) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=latin1;
+            </pma:table>
+            <pma:table name="category_info">
+                CREATE TABLE `category_info` (
+                  `cat_id` int(11) NOT NULL AUTO_INCREMENT,
+                  `cat_name` varchar(30) NOT NULL,
+                  `cat_dname` varchar(30) NOT NULL,
+                  `image_path` text NOT NULL,
+                  `cat_type` varchar(1) NOT NULL,
+                  `cat_parent_id` int(11) NOT NULL,
+                  `reg_date` date NOT NULL,
+                  PRIMARY KEY (`cat_id`)
+                ) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
+            </pma:table>
+            <pma:table name="customer_info">
+                CREATE TABLE `customer_info` (
+                  `cust_id` int(11) NOT NULL AUTO_INCREMENT,
+                  `cust_name` varchar(30) NOT NULL,
+                  `cust_email` varchar(30) NOT NULL,
+                  `cust_mobile` varchar(30) NOT NULL,
+                  `cust_address` text NOT NULL,
+                  `user_name` varchar(20) NOT NULL,
+                  `user_pass` varchar(20) NOT NULL,
+                  `user_type` varchar(5) NOT NULL,
+                  `reg_date` date NOT NULL,
+                  PRIMARY KEY (`cust_id`)
+                ) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=latin1;
+            </pma:table>
+            <pma:table name="item_info">
+                CREATE TABLE `item_info` (
+                  `item_id` int(11) NOT NULL AUTO_INCREMENT,
+                  `item_name` varchar(30) NOT NULL,
+                  `item_img` text NOT NULL,
+                  `item_rate` float NOT NULL,
+                  `item_discount` float NOT NULL,
+                  `item_detail` text NOT NULL,
+                  `item_cat` int(11) NOT NULL,
+                  `item_date` date NOT NULL,
+                  PRIMARY KEY (`item_id`)
+                ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+            </pma:table>
+            <pma:table name="message_info">
+                CREATE TABLE `message_info` (
+                  `msg_id` int(11) NOT NULL AUTO_INCREMENT,
+                  `msg_heading` text NOT NULL,
+                  `msg_detail` text NOT NULL,
+                  `sender_name` varchar(30) NOT NULL,
+                  `receiver_name` varchar(30) NOT NULL,
+                  `reg_date` date NOT NULL,
+                  `msg_status` varchar(10) NOT NULL,
+                  `reply_ref_id` int(11) NOT NULL,
+                  PRIMARY KEY (`msg_id`)
+                ) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+            </pma:table>
+            <pma:table name="news_info">
+                CREATE TABLE `news_info` (
+                  `news_id` int(11) NOT NULL AUTO_INCREMENT,
+                  `news_heading` text NOT NULL,
+                  `news_detail` text NOT NULL,
+                  `reg_date` date NOT NULL,
+                  `news_status` int(11) NOT NULL COMMENT '0 and 1 for visible',
+                  PRIMARY KEY (`news_id`)
+                ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+            </pma:table>
+            <pma:table name="offer_info">
+                CREATE TABLE `offer_info` (
+                  `offer_id` int(11) NOT NULL AUTO_INCREMENT,
+                  `offer_name` text NOT NULL,
+                  `offer_start_dt` datetime NOT NULL,
+                  `offer_end_dt` datetime NOT NULL,
+                  `cat_type` text NOT NULL,
+                  `offer_discount` float NOT NULL,
+                  `reg_date` date NOT NULL,
+                  PRIMARY KEY (`offer_id`)
+                ) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+            </pma:table>
+            <pma:table name="order_detail">
+                CREATE TABLE `order_detail` (
+                  `detail_id` int(11) NOT NULL AUTO_INCREMENT,
+                  `item_id` int(11) NOT NULL,
+                  `item_rate` float NOT NULL,
+                  `item_qty` int(11) NOT NULL,
+                  `ref_order_id` int(11) NOT NULL,
+                  PRIMARY KEY (`detail_id`)
+                ) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=latin1;
+            </pma:table>
+            <pma:table name="order_master">
+                CREATE TABLE `order_master` (
+                  `order_id` int(11) NOT NULL AUTO_INCREMENT,
+                  `cust_name` varchar(30) NOT NULL,
+                  `order_date` date NOT NULL,
+                  `total_amount` int(11) NOT NULL,
+                  `del_address` text NOT NULL,
+                  `order_status` varchar(20) NOT NULL COMMENT 'initiate/dispatch/cancel/received',
+                  `last_update_date` date NOT NULL,
+                  PRIMARY KEY (`order_id`)
+                ) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=latin1;
+            </pma:table>
+        </pma:database>
+    </pma:structure_schemas>
+
+    <!--
+    - Database: 'manjaree_mart'
+    -->
+    <database name="manjaree_mart">
+        <!-- Table cart_info -->
+        <table name="cart_info">
+            <column name="cart_id">7</column>
+            <column name="item_id">2</column>
+            <column name="item_rate">36000</column>
+            <column name="item_qty">2</column>
+            <column name="cust_name">manjaree</column>
+            <column name="reg_date">2021-05-22</column>
+        </table>
+        <table name="cart_info">
+            <column name="cart_id">8</column>
+            <column name="item_id">4</column>
+            <column name="item_rate">4750</column>
+            <column name="item_qty">1</column>
+            <column name="cust_name">manjaree</column>
+            <column name="reg_date">2021-05-22</column>
+        </table>
+        <table name="cart_info">
+            <column name="cart_id">21</column>
+            <column name="item_id">1</column>
+            <column name="item_rate">16000</column>
+            <column name="item_qty">2</column>
+            <column name="cust_name">yt</column>
+            <column name="reg_date">2021-05-30</column>
+        </table>
+        <table name="cart_info">
+            <column name="cart_id">24</column>
+            <column name="item_id">3</column>
+            <column name="item_rate">29575</column>
+            <column name="item_qty">1</column>
+            <column name="cust_name">sakshi</column>
+            <column name="reg_date">2021-06-17</column>
+        </table>
+        <!-- Table category_info -->
+        <table name="category_info">
+            <column name="cat_id">1</column>
+            <column name="cat_name">Electronics</column>
+            <column name="cat_dname">Electronics</column>
+            <column name="image_path">Arduino_ftdi_chip-1.jpg</column>
+            <column name="cat_type">P</column>
+            <column name="cat_parent_id">0</column>
+            <column name="reg_date">2021-05-17</column>
+        </table>
+        <table name="category_info">
+            <column name="cat_id">2</column>
+            <column name="cat_name">Furniture</column>
+            <column name="cat_dname">Furniture</column>
+            <column name="image_path">4-seater-na-rosewood-sheesham-tf-wddining-d2-true-furniture-original-imafzzyjezrecepg.jpeg</column>
+            <column name="cat_type">P</column>
+            <column name="cat_parent_id">0</column>
+            <column name="reg_date">2021-05-17</column>
+        </table>
+        <table name="category_info">
+            <column name="cat_id">3</column>
+            <column name="cat_name">Jwellery</column>
+            <column name="cat_dname">Jwellery</column>
+            <column name="image_path">138-1383862_jewellery-full-hd-png-transparent-png.png</column>
+            <column name="cat_type">P</column>
+            <column name="cat_parent_id">0</column>
+            <column name="reg_date">2021-05-17</column>
+        </table>
+        <table name="category_info">
+            <column name="cat_id">4</column>
+            <column name="cat_name">Mobile</column>
+            <column name="cat_dname">Mobile</column>
+            <column name="image_path">download.jpg</column>
+            <column name="cat_type">S</column>
+            <column name="cat_parent_id">1</column>
+            <column name="reg_date">2021-05-17</column>
+        </table>
+        <table name="category_info">
+            <column name="cat_id">5</column>
+            <column name="cat_name">Shoes</column>
+            <column name="cat_dname">Shoes</column>
+            <column name="image_path">images (1).jpg</column>
+            <column name="cat_type">P</column>
+            <column name="cat_parent_id">0</column>
+            <column name="reg_date">2021-05-17</column>
+        </table>
+        <table name="category_info">
+            <column name="cat_id">6</column>
+            <column name="cat_name">Samsung</column>
+            <column name="cat_dname">Samsung Mobile</column>
+            <column name="image_path">images.jpg</column>
+            <column name="cat_type">S</column>
+            <column name="cat_parent_id">4</column>
+            <column name="reg_date">2021-05-17</column>
+        </table>
+        <table name="category_info">
+            <column name="cat_id">7</column>
+            <column name="cat_name">realme XT</column>
+            <column name="cat_dname">realme XT</column>
+            <column name="image_path">Realme-XT-1.jpg</column>
+            <column name="cat_type">S</column>
+            <column name="cat_parent_id">4</column>
+            <column name="reg_date">2021-05-17</column>
+        </table>
+        <table name="category_info">
+            <column name="cat_id">8</column>
+            <column name="cat_name">nokia</column>
+            <column name="cat_dname">nokia</column>
+            <column name="image_path">gsmarena_002.jpg</column>
+            <column name="cat_type">S</column>
+            <column name="cat_parent_id">4</column>
+            <column name="reg_date">2021-05-17</column>
+        </table>
+        <table name="category_info">
+            <column name="cat_id">9</column>
+            <column name="cat_name">adidas</column>
+            <column name="cat_dname">adidas</column>
+            <column name="image_path">adidas-sports-shoes-500x500.jpg</column>
+            <column name="cat_type">S</column>
+            <column name="cat_parent_id">5</column>
+            <column name="reg_date">2021-05-17</column>
+        </table>
+        <table name="category_info">
+            <column name="cat_id">10</column>
+            <column name="cat_name">Study Table</column>
+            <column name="cat_dname">Study Table</column>
+            <column name="image_path">product-jpeg-500x500.jpg</column>
+            <column name="cat_type">S</column>
+            <column name="cat_parent_id">2</column>
+            <column name="reg_date">2021-05-17</column>
+        </table>
+        <!-- Table customer_info -->
+        <table name="customer_info">
+            <column name="cust_id">4</column>
+            <column name="cust_name">aashi</column>
+            <column name="cust_email">aashi@gmail.com</column>
+            <column name="cust_mobile">465</column>
+            <column name="cust_address">raipur</column>
+            <column name="user_name">aashi</column>
+            <column name="user_pass">aashi</column>
+            <column name="user_type"></column>
+            <column name="reg_date">0000-00-00</column>
+        </table>
+        <table name="customer_info">
+            <column name="cust_id">5</column>
+            <column name="cust_name">manjaree</column>
+            <column name="cust_email">manjaree@gmail.com</column>
+            <column name="cust_mobile">9000000000</column>
+            <column name="cust_address">ambikapur
+cg</column>
+            <column name="user_name">manjaree</column>
+            <column name="user_pass">manjaree</column>
+            <column name="user_type"></column>
+            <column name="reg_date">0000-00-00</column>
+        </table>
+        <table name="customer_info">
+            <column name="cust_id">6</column>
+            <column name="cust_name">aditi</column>
+            <column name="cust_email">aditi@gmail.com</column>
+            <column name="cust_mobile">566666666666</column>
+            <column name="cust_address">ambikapur 
+cG
+</column>
+            <column name="user_name">aditi</column>
+            <column name="user_pass">aditi</column>
+            <column name="user_type"></column>
+            <column name="reg_date">0000-00-00</column>
+        </table>
+        <table name="customer_info">
+            <column name="cust_id">7</column>
+            <column name="cust_name">aashi</column>
+            <column name="cust_email">aashi@gmail.com</column>
+            <column name="cust_mobile">00000009</column>
+            <column name="cust_address">sdf</column>
+            <column name="user_name">aashi123</column>
+            <column name="user_pass">aashi</column>
+            <column name="user_type">user</column>
+            <column name="reg_date">2021-05-15</column>
+        </table>
+        <table name="customer_info">
+            <column name="cust_id">8</column>
+            <column name="cust_name">himanshi</column>
+            <column name="cust_email">himanshi@gmail.com</column>
+            <column name="cust_mobile">4512652022</column>
+            <column name="cust_address">mall road 
+raipur</column>
+            <column name="user_name">himanshi</column>
+            <column name="user_pass">himanshi</column>
+            <column name="user_type">user</column>
+            <column name="reg_date">2021-05-15</column>
+        </table>
+        <table name="customer_info">
+            <column name="cust_id">9</column>
+            <column name="cust_name">yt</column>
+            <column name="cust_email">yt</column>
+            <column name="cust_mobile">76</column>
+            <column name="cust_address">yt</column>
+            <column name="user_name">yt</column>
+            <column name="user_pass">yt</column>
+            <column name="user_type">user</column>
+            <column name="reg_date">2021-05-15</column>
+        </table>
+        <table name="customer_info">
+            <column name="cust_id">10</column>
+            <column name="cust_name">eeee</column>
+            <column name="cust_email">eeee</column>
+            <column name="cust_mobile">4444</column>
+            <column name="cust_address">eeee</column>
+            <column name="user_name">eee</column>
+            <column name="user_pass">eee</column>
+            <column name="user_type">user</column>
+            <column name="reg_date">2021-05-15</column>
+        </table>
+        <table name="customer_info">
+            <column name="cust_id">11</column>
+            <column name="cust_name">uy</column>
+            <column name="cust_email">uy</column>
+            <column name="cust_mobile">8787</column>
+            <column name="cust_address">gfdgfd</column>
+            <column name="user_name">uy</column>
+            <column name="user_pass">uy</column>
+            <column name="user_type">user</column>
+            <column name="reg_date">2021-05-15</column>
+        </table>
+        <table name="customer_info">
+            <column name="cust_id">12</column>
+            <column name="cust_name">astha</column>
+            <column name="cust_email">astha</column>
+            <column name="cust_mobile">877766554</column>
+            <column name="cust_address">mg road</column>
+            <column name="user_name">astha</column>
+            <column name="user_pass">astha</column>
+            <column name="user_type">user</column>
+            <column name="reg_date">2021-05-15</column>
+        </table>
+        <table name="customer_info">
+            <column name="cust_id">13</column>
+            <column name="cust_name"></column>
+            <column name="cust_email"></column>
+            <column name="cust_mobile"></column>
+            <column name="cust_address"></column>
+            <column name="user_name">iu</column>
+            <column name="user_pass">iu</column>
+            <column name="user_type">user</column>
+            <column name="reg_date">2021-05-15</column>
+        </table>
+        <table name="customer_info">
+            <column name="cust_id">14</column>
+            <column name="cust_name">dev</column>
+            <column name="cust_email">dev</column>
+            <column name="cust_mobile">33333</column>
+            <column name="cust_address">dev nagar</column>
+            <column name="user_name">dev</column>
+            <column name="user_pass">dev</column>
+            <column name="user_type">user</column>
+            <column name="reg_date">2021-05-15</column>
+        </table>
+        <table name="customer_info">
+            <column name="cust_id">15</column>
+            <column name="cust_name">hg</column>
+            <column name="cust_email">hg</column>
+            <column name="cust_mobile">089</column>
+            <column name="cust_address">hg</column>
+            <column name="user_name">hg</column>
+            <column name="user_pass">hg</column>
+            <column name="user_type">user</column>
+            <column name="reg_date">2021-05-15</column>
+        </table>
+        <table name="customer_info">
+            <column name="cust_id">16</column>
+            <column name="cust_name">ko</column>
+            <column name="cust_email">ko</column>
+            <column name="cust_mobile">89</column>
+            <column name="cust_address">ko</column>
+            <column name="user_name">ko</column>
+            <column name="user_pass">ko</column>
+            <column name="user_type">user</column>
+            <column name="reg_date">2021-05-15</column>
+        </table>
+        <table name="customer_info">
+            <column name="cust_id">17</column>
+            <column name="cust_name">manjaree agrawal</column>
+            <column name="cust_email">manjareeagrawal@gmail.com</column>
+            <column name="cust_mobile">989898989898</column>
+            <column name="cust_address">ambikapur
+CG</column>
+            <column name="user_name">mm</column>
+            <column name="user_pass">mm</column>
+            <column name="user_type">admin</column>
+            <column name="reg_date">2021-05-15</column>
+        </table>
+        <table name="customer_info">
+            <column name="cust_id">18</column>
+            <column name="cust_name">koko</column>
+            <column name="cust_email">koko</column>
+            <column name="cust_mobile">8787878</column>
+            <column name="cust_address">koko</column>
+            <column name="user_name">koko</column>
+            <column name="user_pass">koko</column>
+            <column name="user_type">user</column>
+            <column name="reg_date">2021-05-15</column>
+        </table>
+        <table name="customer_info">
+            <column name="cust_id">19</column>
+            <column name="cust_name">sakshi</column>
+            <column name="cust_email">sakshi@gmail.com</column>
+            <column name="cust_mobile">8765678</column>
+            <column name="cust_address">mg road</column>
+            <column name="user_name">sakshi</column>
+            <column name="user_pass">sakshi</column>
+            <column name="user_type">user</column>
+            <column name="reg_date">2021-05-25</column>
+        </table>
+        <!-- Table item_info -->
+        <table name="item_info">
+            <column name="item_id">1</column>
+            <column name="item_name">galaxy note 4</column>
+            <column name="item_img">d28be2279fc4658ffe39bcd2f555a156.jpg</column>
+            <column name="item_rate">20000</column>
+            <column name="item_discount">20</column>
+            <column name="item_detail">camera 64 mgpx</column>
+            <column name="item_cat">4</column>
+            <column name="item_date">2021-05-17</column>
+        </table>
+        <table name="item_info">
+            <column name="item_id">2</column>
+            <column name="item_name">galaxy note 6</column>
+            <column name="item_img">wp5320845.jpg</column>
+            <column name="item_rate">40000</column>
+            <column name="item_discount">10</column>
+            <column name="item_detail">camera 64 mgpx </column>
+            <column name="item_cat">4</column>
+            <column name="item_date">2021-05-17</column>
+        </table>
+        <table name="item_info">
+            <column name="item_id">3</column>
+            <column name="item_name">galaxy note 5</column>
+            <column name="item_img">butterfly-flower-ad-1920x1080.jpg</column>
+            <column name="item_rate">35000</column>
+            <column name="item_discount">15.5</column>
+            <column name="item_detail">camera 64 mgpx, dual sim</column>
+            <column name="item_cat">4</column>
+            <column name="item_date">2021-05-17</column>
+        </table>
+        <table name="item_info">
+            <column name="item_id">4</column>
+            <column name="item_name">Adolph Study Table</column>
+            <column name="item_img">4-seater-na-rosewood-sheesham-tf-wddining-d2-true-furniture-original-imafzzyjezrecepg.jpeg</column>
+            <column name="item_rate">5000</column>
+            <column name="item_discount">5</column>
+            <column name="item_detail">best quality wood</column>
+            <column name="item_cat">2</column>
+            <column name="item_date">2021-05-18</column>
+        </table>
+        <!-- Table message_info -->
+        <table name="message_info">
+            <column name="msg_id">1</column>
+            <column name="msg_heading">product is damage</column>
+            <column name="msg_detail">the product i received is damaged and not working please take it for return.</column>
+            <column name="sender_name">sakshi</column>
+            <column name="receiver_name">mm</column>
+            <column name="reg_date">2021-05-25</column>
+            <column name="msg_status">open</column>
+            <column name="reply_ref_id">0</column>
+        </table>
+        <table name="message_info">
+            <column name="msg_id">2</column>
+            <column name="msg_heading">product is damage</column>
+            <column name="msg_detail">i want to return it
+</column>
+            <column name="sender_name">aashi</column>
+            <column name="receiver_name">mm</column>
+            <column name="reg_date">2021-05-26</column>
+            <column name="msg_status">open</column>
+            <column name="reply_ref_id">0</column>
+        </table>
+        <table name="message_info">
+            <column name="msg_id">3</column>
+            <column name="msg_heading">product is damage nd not working</column>
+            <column name="msg_detail">product is damage nd not workingproduct is damage nd not workingproduct is damage nd not working</column>
+            <column name="sender_name">dev</column>
+            <column name="receiver_name">mm</column>
+            <column name="reg_date">2021-05-26</column>
+            <column name="msg_status">open</column>
+            <column name="reply_ref_id">0</column>
+        </table>
+        <table name="message_info">
+            <column name="msg_id">4</column>
+            <column name="msg_heading"></column>
+            <column name="msg_detail"></column>
+            <column name="sender_name">dev</column>
+            <column name="receiver_name">mm</column>
+            <column name="reg_date">2021-05-26</column>
+            <column name="msg_status">open</column>
+            <column name="reply_ref_id">0</column>
+        </table>
+        <table name="message_info">
+            <column name="msg_id">5</column>
+            <column name="msg_heading">Re: product is damage</column>
+            <column name="msg_detail">sorry for the inconvinience mam !
+we will sent our person to get back those products and give uh a new piece of that same product.
+</column>
+            <column name="sender_name">mm</column>
+            <column name="receiver_name">sakshi</column>
+            <column name="reg_date">2021-05-26</column>
+            <column name="msg_status">open</column>
+            <column name="reply_ref_id">1</column>
+        </table>
+        <table name="message_info">
+            <column name="msg_id">6</column>
+            <column name="msg_heading">Re: Re: product is damage</column>
+            <column name="msg_detail">thank u...</column>
+            <column name="sender_name">sakshi</column>
+            <column name="receiver_name">mm</column>
+            <column name="reg_date">2021-05-26</column>
+            <column name="msg_status">open</column>
+            <column name="reply_ref_id">5</column>
+        </table>
+        <table name="message_info">
+            <column name="msg_id">7</column>
+            <column name="msg_heading">Re: Re: Re: product is damage</column>
+            <column name="msg_detail">ok</column>
+            <column name="sender_name">mm</column>
+            <column name="receiver_name">sakshi</column>
+            <column name="reg_date">2021-05-26</column>
+            <column name="msg_status">open</column>
+            <column name="reply_ref_id">6</column>
+        </table>
+        <!-- Table news_info -->
+        <table name="news_info">
+            <column name="news_id">1</column>
+            <column name="news_heading">summer sale upto 30% off</column>
+            <column name="news_detail">discount on all electronics</column>
+            <column name="reg_date">2021-05-30</column>
+            <column name="news_status">1</column>
+        </table>
+        <table name="news_info">
+            <column name="news_id">2</column>
+            <column name="news_heading">flat 40% discount on summer cloth collection</column>
+            <column name="news_detail">cotton fabric good, </column>
+            <column name="reg_date">2021-05-30</column>
+            <column name="news_status">1</column>
+        </table>
+        <!-- Table offer_info -->
+        <table name="offer_info">
+            <column name="offer_id">3</column>
+            <column name="offer_name">summer discount offer</column>
+            <column name="offer_start_dt">2021-05-30 00:00:00</column>
+            <column name="offer_end_dt">2021-06-06 00:00:00</column>
+            <column name="cat_type">1-4-6-7-8</column>
+            <column name="offer_discount">15</column>
+            <column name="reg_date">2021-05-31</column>
+        </table>
+        <table name="offer_info">
+            <column name="offer_id">7</column>
+            <column name="offer_name">summer dhamaka</column>
+            <column name="offer_start_dt">2021-06-02 00:00:00</column>
+            <column name="offer_end_dt">2021-06-08 00:00:00</column>
+            <column name="cat_type">1-4-6-7-8</column>
+            <column name="offer_discount">10</column>
+            <column name="reg_date">2021-06-03</column>
+        </table>
+        <!-- Table order_detail -->
+        <table name="order_detail">
+            <column name="detail_id">1</column>
+            <column name="item_id">1</column>
+            <column name="item_rate">16000</column>
+            <column name="item_qty">1</column>
+            <column name="ref_order_id">19</column>
+        </table>
+        <table name="order_detail">
+            <column name="detail_id">2</column>
+            <column name="item_id">3</column>
+            <column name="item_rate">29575</column>
+            <column name="item_qty">3</column>
+            <column name="ref_order_id">19</column>
+        </table>
+        <table name="order_detail">
+            <column name="detail_id">3</column>
+            <column name="item_id">2</column>
+            <column name="item_rate">36000</column>
+            <column name="item_qty">1</column>
+            <column name="ref_order_id">19</column>
+        </table>
+        <table name="order_detail">
+            <column name="detail_id">4</column>
+            <column name="item_id">4</column>
+            <column name="item_rate">4750</column>
+            <column name="item_qty">1</column>
+            <column name="ref_order_id">19</column>
+        </table>
+        <table name="order_detail">
+            <column name="detail_id">5</column>
+            <column name="item_id">4</column>
+            <column name="item_rate">4750</column>
+            <column name="item_qty">3</column>
+            <column name="ref_order_id">19</column>
+        </table>
+        <table name="order_detail">
+            <column name="detail_id">6</column>
+            <column name="item_id">3</column>
+            <column name="item_rate">29575</column>
+            <column name="item_qty">2</column>
+            <column name="ref_order_id">19</column>
+        </table>
+        <table name="order_detail">
+            <column name="detail_id">7</column>
+            <column name="item_id">1</column>
+            <column name="item_rate">16000</column>
+            <column name="item_qty">1</column>
+            <column name="ref_order_id">20</column>
+        </table>
+        <table name="order_detail">
+            <column name="detail_id">8</column>
+            <column name="item_id">1</column>
+            <column name="item_rate">16000</column>
+            <column name="item_qty">2</column>
+            <column name="ref_order_id">22</column>
+        </table>
+        <table name="order_detail">
+            <column name="detail_id">9</column>
+            <column name="item_id">1</column>
+            <column name="item_rate">16000</column>
+            <column name="item_qty">1</column>
+            <column name="ref_order_id">24</column>
+        </table>
+        <table name="order_detail">
+            <column name="detail_id">10</column>
+            <column name="item_id">1</column>
+            <column name="item_rate">16000</column>
+            <column name="item_qty">1</column>
+            <column name="ref_order_id">24</column>
+        </table>
+        <table name="order_detail">
+            <column name="detail_id">11</column>
+            <column name="item_id">4</column>
+            <column name="item_rate">4750</column>
+            <column name="item_qty">1</column>
+            <column name="ref_order_id">24</column>
+        </table>
+        <table name="order_detail">
+            <column name="detail_id">12</column>
+            <column name="item_id">1</column>
+            <column name="item_rate">16000</column>
+            <column name="item_qty">1</column>
+            <column name="ref_order_id">28</column>
+        </table>
+        <table name="order_detail">
+            <column name="detail_id">13</column>
+            <column name="item_id">1</column>
+            <column name="item_rate">16000</column>
+            <column name="item_qty">2</column>
+            <column name="ref_order_id">30</column>
+        </table>
+        <table name="order_detail">
+            <column name="detail_id">14</column>
+            <column name="item_id">4</column>
+            <column name="item_rate">4750</column>
+            <column name="item_qty">1</column>
+            <column name="ref_order_id">30</column>
+        </table>
+        <table name="order_detail">
+            <column name="detail_id">15</column>
+            <column name="item_id">4</column>
+            <column name="item_rate">4750</column>
+            <column name="item_qty">2</column>
+            <column name="ref_order_id">31</column>
+        </table>
+        <table name="order_detail">
+            <column name="detail_id">16</column>
+            <column name="item_id">4</column>
+            <column name="item_rate">4750</column>
+            <column name="item_qty">2</column>
+            <column name="ref_order_id">32</column>
+        </table>
+        <table name="order_detail">
+            <column name="detail_id">17</column>
+            <column name="item_id">1</column>
+            <column name="item_rate">16000</column>
+            <column name="item_qty">1</column>
+            <column name="ref_order_id">33</column>
+        </table>
+        <table name="order_detail">
+            <column name="detail_id">18</column>
+            <column name="item_id">4</column>
+            <column name="item_rate">4750</column>
+            <column name="item_qty">2</column>
+            <column name="ref_order_id">33</column>
+        </table>
+        <!-- Table order_master -->
+        <table name="order_master">
+            <column name="order_id">8</column>
+            <column name="cust_name">aashi</column>
+            <column name="order_date">0000-00-00</column>
+            <column name="total_amount">124500</column>
+            <column name="del_address"></column>
+            <column name="order_status"></column>
+            <column name="last_update_date">0000-00-00</column>
+        </table>
+        <table name="order_master">
+            <column name="order_id">9</column>
+            <column name="cust_name">aashi</column>
+            <column name="order_date">0000-00-00</column>
+            <column name="total_amount">124500</column>
+            <column name="del_address">raipur </column>
+            <column name="order_status">initiate</column>
+            <column name="last_update_date">0000-00-00</column>
+        </table>
+        <table name="order_master">
+            <column name="order_id">10</column>
+            <column name="cust_name">aashi</column>
+            <column name="order_date">0000-00-00</column>
+            <column name="total_amount">124500</column>
+            <column name="del_address">raipur </column>
+            <column name="order_status">initiate</column>
+            <column name="last_update_date">0000-00-00</column>
+        </table>
+        <table name="order_master">
+            <column name="order_id">11</column>
+            <column name="cust_name">aashi</column>
+            <column name="order_date">0000-00-00</column>
+            <column name="total_amount">124500</column>
+            <column name="del_address">raipur </column>
+            <column name="order_status">initiate</column>
+            <column name="last_update_date">0000-00-00</column>
+        </table>
+        <table name="order_master">
+            <column name="order_id">12</column>
+            <column name="cust_name">aashi</column>
+            <column name="order_date">0000-00-00</column>
+            <column name="total_amount">124500</column>
+            <column name="del_address">raipur </column>
+            <column name="order_status">initiate</column>
+            <column name="last_update_date">0000-00-00</column>
+        </table>
+        <table name="order_master">
+            <column name="order_id">13</column>
+            <column name="cust_name">aashi</column>
+            <column name="order_date">0000-00-00</column>
+            <column name="total_amount">124500</column>
+            <column name="del_address">raipur </column>
+            <column name="order_status">initiate</column>
+            <column name="last_update_date">0000-00-00</column>
+        </table>
+        <table name="order_master">
+            <column name="order_id">14</column>
+            <column name="cust_name">aashi</column>
+            <column name="order_date">0000-00-00</column>
+            <column name="total_amount">124500</column>
+            <column name="del_address">raipur </column>
+            <column name="order_status">initiate</column>
+            <column name="last_update_date">0000-00-00</column>
+        </table>
+        <table name="order_master">
+            <column name="order_id">15</column>
+            <column name="cust_name">aashi</column>
+            <column name="order_date">0000-00-00</column>
+            <column name="total_amount">124500</column>
+            <column name="del_address">raipur </column>
+            <column name="order_status">initiate</column>
+            <column name="last_update_date">0000-00-00</column>
+        </table>
+        <table name="order_master">
+            <column name="order_id">16</column>
+            <column name="cust_name">aashi</column>
+            <column name="order_date">0000-00-00</column>
+            <column name="total_amount">124500</column>
+            <column name="del_address">raipur </column>
+            <column name="order_status">initiate</column>
+            <column name="last_update_date">0000-00-00</column>
+        </table>
+        <table name="order_master">
+            <column name="order_id">17</column>
+            <column name="cust_name">aashi</column>
+            <column name="order_date">0000-00-00</column>
+            <column name="total_amount">124500</column>
+            <column name="del_address">ram nagar
+ </column>
+            <column name="order_status">initiate</column>
+            <column name="last_update_date">0000-00-00</column>
+        </table>
+        <table name="order_master">
+            <column name="order_id">18</column>
+            <column name="cust_name">aashi</column>
+            <column name="order_date">0000-00-00</column>
+            <column name="total_amount">124500</column>
+            <column name="del_address">raipur </column>
+            <column name="order_status">initiate</column>
+            <column name="last_update_date">0000-00-00</column>
+        </table>
+        <table name="order_master">
+            <column name="order_id">19</column>
+            <column name="cust_name">sakshi</column>
+            <column name="order_date">0000-00-00</column>
+            <column name="total_amount">218875</column>
+            <column name="del_address">mg road </column>
+            <column name="order_status">initiate</column>
+            <column name="last_update_date">0000-00-00</column>
+        </table>
+        <table name="order_master">
+            <column name="order_id">20</column>
+            <column name="cust_name">yt</column>
+            <column name="order_date">0000-00-00</column>
+            <column name="total_amount">16000</column>
+            <column name="del_address">navapara
+ring road
+ambikapur</column>
+            <column name="order_status">initiate</column>
+            <column name="last_update_date">0000-00-00</column>
+        </table>
+        <table name="order_master">
+            <column name="order_id">21</column>
+            <column name="cust_name">yt</column>
+            <column name="order_date">0000-00-00</column>
+            <column name="total_amount">16000</column>
+            <column name="del_address">yt </column>
+            <column name="order_status">initiate</column>
+            <column name="last_update_date">0000-00-00</column>
+        </table>
+        <table name="order_master">
+            <column name="order_id">22</column>
+            <column name="cust_name">aashi</column>
+            <column name="order_date">0000-00-00</column>
+            <column name="total_amount">32000</column>
+            <column name="del_address">shakti nagar 
+raipur </column>
+            <column name="order_status">initiate</column>
+            <column name="last_update_date">0000-00-00</column>
+        </table>
+        <table name="order_master">
+            <column name="order_id">23</column>
+            <column name="cust_name">aashi</column>
+            <column name="order_date">0000-00-00</column>
+            <column name="total_amount">32000</column>
+            <column name="del_address">raipur </column>
+            <column name="order_status">initiate</column>
+            <column name="last_update_date">0000-00-00</column>
+        </table>
+        <table name="order_master">
+            <column name="order_id">24</column>
+            <column name="cust_name">mm</column>
+            <column name="order_date">0000-00-00</column>
+            <column name="total_amount">36750</column>
+            <column name="del_address">ambikapur
+CG </column>
+            <column name="order_status">initiate</column>
+            <column name="last_update_date">0000-00-00</column>
+        </table>
+        <table name="order_master">
+            <column name="order_id">25</column>
+            <column name="cust_name">mm</column>
+            <column name="order_date">0000-00-00</column>
+            <column name="total_amount">36750</column>
+            <column name="del_address">ambikapur
+CG </column>
+            <column name="order_status">initiate</column>
+            <column name="last_update_date">0000-00-00</column>
+        </table>
+        <table name="order_master">
+            <column name="order_id">26</column>
+            <column name="cust_name">mm</column>
+            <column name="order_date">0000-00-00</column>
+            <column name="total_amount">36750</column>
+            <column name="del_address">ambikapur
+CG </column>
+            <column name="order_status">initiate</column>
+            <column name="last_update_date">0000-00-00</column>
+        </table>
+        <table name="order_master">
+            <column name="order_id">27</column>
+            <column name="cust_name">mm</column>
+            <column name="order_date">0000-00-00</column>
+            <column name="total_amount">36750</column>
+            <column name="del_address">ambikapur
+CG </column>
+            <column name="order_status">initiate</column>
+            <column name="last_update_date">0000-00-00</column>
+        </table>
+        <table name="order_master">
+            <column name="order_id">28</column>
+            <column name="cust_name">sakshi</column>
+            <column name="order_date">0000-00-00</column>
+            <column name="total_amount">16000</column>
+            <column name="del_address">near sai college
+ambikapur</column>
+            <column name="order_status">initiate</column>
+            <column name="last_update_date">0000-00-00</column>
+        </table>
+        <table name="order_master">
+            <column name="order_id">29</column>
+            <column name="cust_name">$usr</column>
+            <column name="order_date">2021-05-31</column>
+            <column name="total_amount">0</column>
+            <column name="del_address">$b</column>
+            <column name="order_status">initiate</column>
+            <column name="last_update_date">2021-05-31</column>
+        </table>
+        <table name="order_master">
+            <column name="order_id">30</column>
+            <column name="cust_name">mm</column>
+            <column name="order_date">2021-06-16</column>
+            <column name="total_amount">36750</column>
+            <column name="del_address">ambikapur
+CG </column>
+            <column name="order_status">initiate</column>
+            <column name="last_update_date">2021-06-16</column>
+        </table>
+        <table name="order_master">
+            <column name="order_id">31</column>
+            <column name="cust_name">mm</column>
+            <column name="order_date">2021-06-17</column>
+            <column name="total_amount">9500</column>
+            <column name="del_address">ambikapur
+CG </column>
+            <column name="order_status">initiate</column>
+            <column name="last_update_date">2021-06-17</column>
+        </table>
+        <table name="order_master">
+            <column name="order_id">32</column>
+            <column name="cust_name">mm</column>
+            <column name="order_date">2021-06-17</column>
+            <column name="total_amount">9500</column>
+            <column name="del_address">ambikapur
+CG </column>
+            <column name="order_status">initiate</column>
+            <column name="last_update_date">2021-06-17</column>
+        </table>
+        <table name="order_master">
+            <column name="order_id">33</column>
+            <column name="cust_name">mm</column>
+            <column name="order_date">2021-06-17</column>
+            <column name="total_amount">25500</column>
+            <column name="del_address">ambikapur
+CG </column>
+            <column name="order_status">initiate</column>
+            <column name="last_update_date">2021-06-17</column>
+        </table>
+    </database>
+</pma_xml_export>
