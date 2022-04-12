@@ -1,0 +1,106 @@
+body
+{
+	margin:0px;
+	padding:0px;
+	background-color:#E2E2E2;
+}
+#main
+{
+	margin:0px auto;
+	border:0px solid black;
+	background-color:white;
+	width:1000px;
+}
+#header
+{
+	border:0px solid brown;
+	margin:0px auto;
+	height:150px;
+	background-color:white;
+}
+
+#content
+{
+	margin:0px auto;
+	min-height:550px;
+	background-color:white;
+	border:0px solid brown;
+}
+#footer
+{
+	border:1px solid #069;
+	margin:auto;
+	height:150px;
+	background-color:#069;
+}
+#leftlogo
+{
+	border:0px solid yellow;
+	float:left;
+	width:150px;
+	margin-left:20px;
+}
+#rightlogo
+{
+	border:0px solid yellow;
+	float:left;
+	width:150px;
+}
+#leftlogo img, #rightlogo img
+{
+	width:100%;
+	height:100%;
+}
+#title
+{
+	border:0px solid black;
+	float:left;
+	width:680px;
+	text-align:center;
+	height:150px;
+}
+#title h1
+{
+	color:#00C;
+	margin:0px auto;
+	margin-top:35px;
+}
+#title a
+{
+	text-decoration:none;
+}
+#title h3
+{
+	color:#F11;
+	margin:0px auto;
+}
+#myForm 
+{
+	width:600px;
+	background-color:#39C;
+	border:1px solid #F63;
+	margin:0px auto;
+	margin-top:30px;
+	box-shadow:2px 2px 15px white;
+	
+}
+#myForm table
+{
+	font-size:18px;
+	padding:10px;
+	color:white;
+}
+#myForm input[type="text"] , #myForm input[type="password"] , #myForm textarea , #myForm select
+{
+	width:320px;
+}
+#myForm input[type="submit"], #myForm input[type="reset"]
+{
+	background-color:#FFF;
+	width:100px;
+	height:40px;
+	margin-top:20px;
+	border:1px solid #F63;	
+	color:#F63;
+	font-weight:700;
+}
